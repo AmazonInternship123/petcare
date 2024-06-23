@@ -9,6 +9,7 @@ const GetFeedingReminderIntentHandler = {
         const speakOutput = 'Remember to feed your pet at 7 AM and 7 PM daily.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
+            .reprompt(speakOutput) // Reprompt to keep session open
             .getResponse();
     }
 };
@@ -22,6 +23,7 @@ const GetGroomingTipIntentHandler = {
         const speakOutput = 'Regularly brush your pet to keep their coat healthy and reduce shedding.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
+            .reprompt(speakOutput) // Reprompt to keep session open
             .getResponse();
     }
 };
@@ -35,6 +37,7 @@ const GetPetCareAdviceIntentHandler = {
         const speakOutput = 'Ensure your pet gets regular exercise, a balanced diet, and routine vet check-ups.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
+            .reprompt(speakOutput) // Reprompt to keep session open
             .getResponse();
     }
 };
@@ -48,6 +51,7 @@ const SetMedicationReminderIntentHandler = {
         const speakOutput = 'Medication reminder set for 8 AM daily.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
+            .reprompt(speakOutput) // Reprompt to keep session open
             .getResponse();
     }
 };
@@ -61,6 +65,7 @@ const ScheduleVetAppointmentIntentHandler = {
         const speakOutput = 'Vet appointment scheduled for next Saturday at 10 AM.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
+            .reprompt(speakOutput) // Reprompt to keep session open
             .getResponse();
     }
 };
@@ -74,7 +79,7 @@ const HelpIntentHandler = {
         const speakOutput = 'You can say things like, give me a feeding reminder, or, tell me a grooming tip.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt(speakOutput)
+            .reprompt(speakOutput) // Reprompt to keep session open
             .getResponse();
     }
 };
@@ -102,7 +107,7 @@ const ErrorHandler = {
         const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt(speakOutput)
+            .reprompt(speakOutput) // Reprompt to keep session open
             .getResponse();
     }
 };
