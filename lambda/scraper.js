@@ -3,21 +3,28 @@ const cheerio = require('cheerio');
 
 async function getPetCareAdvice() {
     try {
-        const { data } = await axios.get('https://example.com/pet-care-advice');
+        console.log('Fetching pet care advice...');
+        const { data } = await axios.get('https://www.petmd.com/dog/care');
+        console.log('Data fetched successfully.');
+
         const $ = cheerio.load(data);
         let adviceList = [];
 
-        $('.advice-item').each((index, element) => {
+        $('.node-title a').each((index, element) => {
             adviceList.push($(element).text());
         });
+
+        console.log('Advice list:', adviceList);
 
         if (adviceList.length === 0) {
             throw new Error('No advice found');
         }
 
-        return adviceList[Math.floor(Math.random() * adviceList.length)];
+        const randomAdvice = adviceList[Math.floor(Math.random() * adviceList.length)];
+        console.log('Selected advice:', randomAdvice);
+        return randomAdvice;
     } catch (error) {
-        console.error('Error fetching pet care advice:', error);
+        console.error('Error fetching pet care advice:', error.message);
         return 'Sorry, I couldn\'t fetch pet care advice at the moment.';
     }
 }
