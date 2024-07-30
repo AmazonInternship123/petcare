@@ -6,7 +6,7 @@ const GetFeedingReminderIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetFeedingReminderIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'See Brother Remember to feed your pet at 7 AM and 7 PM daily.';
+        const speakOutput = 'Remember to feed your pet at 7 AM and 7 PM daily.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput) 
