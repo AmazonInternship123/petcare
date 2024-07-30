@@ -1,5 +1,5 @@
 const Alexa = require('ask-sdk-core');
-
+const { getPetCareAdvice } = require('./scraper');
 const GetFeedingReminderIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -31,14 +31,15 @@ const GetGroomingTipIntentHandler = {
 
 const GetPetCareAdviceIntentHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetPetCareAdviceIntent';
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
+               Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetPetCareAdviceIntent';
     },
-    handle(handlerInput) {
-        const speakOutput = 'Ensure your pet gets regular exercise, a balanced diet, and routine vet check-ups.';
+    async handle(handlerInput) {
+        const advice = await getPetCareAdvice();
+        const speakOutput = advice;
+
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt(speakOutput) // Reprompt to keep session open
             .getResponse();
     }
 };
